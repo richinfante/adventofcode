@@ -10,8 +10,7 @@ function getIsCycle(mapStr, overrides = []) {
     map[override.y][override.x] = override.char
   }
 
-  // console.log(map, overrides)
-
+  // find the guard
   let guardPos = undefined
   for (let y = 0; y < map.length; y++) {
     for (let x = 0; x < map[y].length; x++) {
@@ -27,6 +26,7 @@ function getIsCycle(mapStr, overrides = []) {
     throw new Error('No guard found')
   }
 
+  // store a map of <coord_str, [seen guard travel directions]>
   const travelVecs = {}
 
   while (true) {
@@ -43,7 +43,7 @@ function getIsCycle(mapStr, overrides = []) {
     if (!travelVecs[coord].includes(current)) {
       travelVecs[coord].push(current)
     } else {
-      return true
+      return true // if we've been here before in same direction, we're in a cycle
     }
 
     if (current === '^') {
@@ -114,6 +114,11 @@ function getIsCycle(mapStr, overrides = []) {
   return false
 }
 
+
+// main routine
+const start = new Date().getTime()
+
+// load the map
 const ogMap = mapStr
     .split('\n')
     .map(el => el.split(''))
@@ -121,18 +126,24 @@ const ogMap = mapStr
 const w = ogMap[0].length
 const h = ogMap.length
 
+// try flipping each tile.
+// this probably isn't needed, maybe we can take only the tiles we actually hit in pt1?
 let cycleCount = 0
 for (let x = 0; x < w; x++) {
   for (let y = 0; y < h; y++) {
+    // only flip things that are a wall
     if (ogMap[y][x] !== '.') {
       continue
     }
 
+    // override the map with a wall at this location,
+    // check if it causes a cycle
     if (getIsCycle(mapStr, [{ x, y, char: '#' }])) {
       cycleCount += 1
-      console.log('cycle at', x, y)
+      process.stdout.write('.')
     }
   }
 }
 
 console.log('places to add obstacles that cause cycles:', cycleCount)
+console.log('time (s)', (new Date().getTime() - start) / 1000)
