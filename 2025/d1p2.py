@@ -1,4 +1,4 @@
-input_f = open("2025/d1_input.txt", "r")
+input_f = open('2025/d1_input.txt', 'r')
 lines = input_f.readlines()
 input_f.close()
 
@@ -13,10 +13,10 @@ for ins in lines:
 
   # hack, we could definitely math this out, but I won't bother
   for i in range(ins[1]):
-    if ins[0] == "R":
-      new_pos = (new_pos + 1)
+    if ins[0] == 'R':
+      new_pos = new_pos + 1
     else:
-      new_pos = (new_pos - 1)
+      new_pos = new_pos - 1
 
     if new_pos % 100 == 0:
       password += 1

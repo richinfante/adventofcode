@@ -1,5 +1,6 @@
 from typing import Optional
 
+
 def get_at_x_y(grid, x: int, y: int) -> Optional[str]:
   if x < 0 or y < 0:
     return None
@@ -9,11 +10,10 @@ def get_at_x_y(grid, x: int, y: int) -> Optional[str]:
 
   return grid[y][x]
 
+
 def count_adjacent(x: int, y: int) -> int:
   count = 0
-  for coords in [(-1, -1), (0, -1), (1, -1),
-                 (-1, 0),          (1, 0),
-                 (-1, 1),  (0, 1),  (1, 1)]:
+  for coords in [(-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1)]:
     adj_x = x + coords[0]
     adj_y = y + coords[1]
 
@@ -24,8 +24,9 @@ def count_adjacent(x: int, y: int) -> int:
 
   return count
 
-if __name__ == "__main__":
-  input_f = open("2025/d4_input.txt", "r")
+
+if __name__ == '__main__':
+  input_f = open('2025/d4_input.txt', 'r')
   data = input_f.read().strip().split('\n')
   rows = [[x for x in line] for line in data]
 
@@ -42,4 +43,4 @@ if __name__ == "__main__":
       if rmx < 4:
         rm_count += 1
 
-  print("removals:", rm_count)
+  print('removals:', rm_count)

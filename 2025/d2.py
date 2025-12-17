@@ -8,8 +8,10 @@ def is_valid_id(num_str):
       break
 
   return is_valid_id
-if __name__ == "__main__":
-  input_f = open("2025/d2_input.txt", "r")
+
+
+if __name__ == '__main__':
+  input_f = open('2025/d2_input.txt', 'r')
   data = input_f.read().strip().split(',')
 
   # parse into (a, b) tuples

@@ -14,7 +14,7 @@ def is_valid_id(num_str):
     chunks = []
     chunk_size = len(num_str) // num_repeats
     for i in range(0, len(num_str), chunk_size):
-      chunks.append(num_str[i:i + chunk_size])
+      chunks.append(num_str[i : i + chunk_size])
 
     # check if all are same (compare 1st with rest)
     all_same = True
@@ -29,6 +29,7 @@ def is_valid_id(num_str):
 
   return True
 
+
 assert not is_valid_id('11')
 assert not is_valid_id('22')
 assert not is_valid_id('999')
@@ -41,8 +42,8 @@ assert not is_valid_id('2121212121')
 assert not is_valid_id('565656')
 assert is_valid_id('837817')
 
-if __name__ == "__main__":
-  input_f = open("2025/d2_input.txt", "r")
+if __name__ == '__main__':
+  input_f = open('2025/d2_input.txt', 'r')
   data = input_f.read().strip().split(',')
 
   # parse into (a, b) tuples
